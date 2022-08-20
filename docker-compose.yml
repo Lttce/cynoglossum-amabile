@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  go-api:
+    container_name: 'go-api'
+    build: .
+    env_file: .env
+    ports:
+      - '1323:1323'
+    volumes:
+      - ./:/app
+    networks:
+      - db_default
+    command: 'go run server.go' 
+
+networks:
+  db_default:
+    external: true
